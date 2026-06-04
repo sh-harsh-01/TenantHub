@@ -44,7 +44,12 @@ app.get("/auth/verify", (req, res) => {
 });
 
 app.post("/auth/logout", (req, res) => {
-  res.clearCookie("token", { httpOnly: true, sameSite: "lax" });
+  const isProd = process.env.NODE_ENV === "production";
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: isProd,
+    sameSite: isProd ? "none" : "lax",
+  });
   return res.status(200).json({ message: "Logged out" });
 });
 
