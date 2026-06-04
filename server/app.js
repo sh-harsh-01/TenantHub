@@ -13,7 +13,7 @@ const connectDB = require("./config/db");
 
 // Enable CORS — allow credentials so cookies are sent cross-origin
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: true,
   credentials: true,
 }));
 
