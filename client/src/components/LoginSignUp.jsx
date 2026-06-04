@@ -5,7 +5,7 @@ import "../css/LoginSignup.css";
 import { Atom } from "react-loading-indicators";
 import Loader from "../components/Loader";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL || "https://tenanthub-ka34.onrender.com";
 
 const LoginPage = () => {
   const [isActive, setIsActive] = useState(false); // Switch between Sign Up / Sign In

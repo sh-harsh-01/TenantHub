@@ -4,7 +4,7 @@ import { Button, Modal, Form } from "react-bootstrap";
 import Header from './Header';
 import Sidebar from './Sidebar';
 import { useNavigate } from 'react-router-dom';
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL || "https://tenanthub-ka34.onrender.com";
 const RenterLayout = ({ children }) => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [showModal, setShowModal] = useState(false);

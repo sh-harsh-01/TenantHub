@@ -14,7 +14,7 @@ import Loader from "../components/Loader";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL || "https://tenanthub-ka34.onrender.com";
 
 export default function RenterDashboard() {
   const [showSidebar, setShowSidebar] = useState(false);

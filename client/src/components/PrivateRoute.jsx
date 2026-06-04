@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL || "https://tenanthub-ka34.onrender.com";
 
 const PrivateRoute = () => {
   const [status, setStatus] = useState("checking"); // "checking" | "ok" | "denied"

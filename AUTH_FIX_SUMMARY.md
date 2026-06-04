@@ -24,7 +24,7 @@ res.cookie("token", token, {
 **Fix**: Created environment variable configuration:
 - Created `.env.local` with production URL
 - Created `.env.development` with localhost URL
-- Added `const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000"` to all components
+- Added `const API_URL = process.env.REACT_APP_API_URL || "https://tenanthub-ka34.onrender.com"` to all components
 - Updated all axios calls to use `${API_URL}` instead of hardcoded URLs
 
 **Files Updated**:
