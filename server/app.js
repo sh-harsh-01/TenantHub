@@ -33,6 +33,8 @@ const paymentRoutes = require('./routes/payment');
 
 // Auth endpoints — verify cookie token & logout
 app.get("/auth/verify", (req, res) => {
+  console.log("cookie ", req.headers.cookie);
+  console.log("p cookie ", req.cookie);
   const token = req.cookies?.token;
   if (!token) return res.status(401).json({ authenticated: false });
   try {
