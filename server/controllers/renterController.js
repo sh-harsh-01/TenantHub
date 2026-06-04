@@ -33,12 +33,12 @@ const loginRenter = async (req, res) => {
     );
 
     res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      secure:true,
-      sameSite:"none"
-    });
-
+    httpOnly: true,
+    secure: true,        // MUST be true on HTTPS (Render)
+    sameSite: "none",    // REQUIRED for cross-site cookies
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
+  
     return res.status(200).json({
       message: "Login successful",
       renter: {
