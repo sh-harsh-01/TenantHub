@@ -4,7 +4,7 @@ import { Button, Modal, Form } from "react-bootstrap";
 import Header from './Header';
 import Sidebar from './Sidebar';
 import { useNavigate } from 'react-router-dom';
-
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 const RenterLayout = ({ children }) => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -18,7 +18,7 @@ const RenterLayout = ({ children }) => {
       if (!token) return;
 
       try {
-        const res = await axios.get("https://tenanthub-ka34.onrender.com/renter/get-renter-data", {
+        const res = await axios.get(`${API_URL}/renter/get-renter-data`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUserData(res.data);

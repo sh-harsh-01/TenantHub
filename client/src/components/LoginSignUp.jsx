@@ -5,6 +5,7 @@ import "../css/LoginSignup.css";
 import { Atom } from "react-loading-indicators";
 import Loader from "../components/Loader";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 const LoginPage = () => {
   const [isActive, setIsActive] = useState(false); // Switch between Sign Up / Sign In
@@ -23,7 +24,7 @@ const LoginPage = () => {
   // Redirect already-authenticated users away from login page
   useEffect(() => {
     axios
-      .get("https://tenanthub-ka34.onrender.com/auth/verify", { withCredentials: true })
+      .get(`${API_URL}/auth/verify`, { withCredentials: true })
       .then((res) => {
         if (res.data.authenticated) {
           const role = res.data.user?.role;
@@ -99,7 +100,7 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post(
-        "https://tenanthub-ka34.onrender.com/renter/register",
+        `${API_URL}/renter/register`,
         formData
       ); // POST request for Sign Up
 
@@ -137,7 +138,7 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post(
-        "https://tenanthub-ka34.onrender.com/renter/login",
+        `${API_URL}/renter/login`,
         { email: formData.email, password: formData.password },
         { withCredentials: true }
       );

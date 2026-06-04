@@ -49,6 +49,7 @@ app.post("/auth/logout", (req, res) => {
     httpOnly: true,
     secure: isProd,
     sameSite: isProd ? "none" : "lax",
+    path: "/",
   });
   return res.status(200).json({ message: "Logged out" });
 });

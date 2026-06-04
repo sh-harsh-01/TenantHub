@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 const PrivateRoute = () => {
   const [status, setStatus] = useState("checking"); // "checking" | "ok" | "denied"
   const [role, setRole] = useState(null);
@@ -10,7 +12,7 @@ const PrivateRoute = () => {
 
   useEffect(() => {
     axios
-      .get("https://tenanthub-ka34.onrender.com/auth/verify", { withCredentials: true })
+      .get(`${API_URL}/auth/verify`, { withCredentials: true })
       .then((res) => {
         setRole(res.data?.user?.role || "renter");
         setStatus("ok");

@@ -14,6 +14,8 @@ import Loader from "../components/Loader";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 export default function RenterDashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -59,7 +61,7 @@ export default function RenterDashboard() {
         // Get email from nav state OR fall back to the JWT cookie via /auth/verify
         let email = state?.email;
         if (!email) {
-          const authRes = await axios.get("https://tenanthub-ka34.onrender.com/auth/verify", {
+          const authRes = await axios.get(`${API_URL}/auth/verify`, {
             withCredentials: true,
           });
           email = authRes.data?.user?.email;
@@ -68,7 +70,7 @@ export default function RenterDashboard() {
         if (!email) throw new Error("No email available");
 
         const [response] = await Promise.all([
-          axios.get("https://tenanthub-ka34.onrender.com/renter/get-renter-data", {
+          axios.get(`${API_URL}/renter/get-renter-data`, {
             params: { email },
             withCredentials: true,
           }),
@@ -105,7 +107,7 @@ export default function RenterDashboard() {
 
   const handleSignOut = async () => {
     try {
-      await axios.post("https://tenanthub-ka34.onrender.com/auth/logout", {}, { withCredentials: true });
+      await axios.post(`${API_URL}/auth/logout`, {}, { withCredentials: true });
     } catch (_) {}
     navigate("/login");
   };
