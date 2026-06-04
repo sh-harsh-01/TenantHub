@@ -23,7 +23,7 @@ const LoginPage = () => {
   // Redirect already-authenticated users away from login page
   useEffect(() => {
     axios
-      .get("http://localhost:5000/auth/verify", { withCredentials: true })
+      .get("https://tenanthub-ka34.onrender.com/auth/verify", { withCredentials: true })
       .then((res) => {
         if (res.data.authenticated) {
           const role = res.data.user?.role;
@@ -99,7 +99,7 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/renter/register",
+        "https://tenanthub-ka34.onrender.com/renter/register",
         formData
       ); // POST request for Sign Up
 
@@ -137,7 +137,7 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/renter/login",
+        "https://tenanthub-ka34.onrender.com/renter/login",
         { email: formData.email, password: formData.password },
         { withCredentials: true }
       );

@@ -41,8 +41,8 @@ const PayNow = () => {
     if (!loaded) { alert("Failed to load Razorpay SDK."); return; }
 
     try {
-      const keyRes   = await axios.get("http://localhost:5000/payment/getkey");
-      const orderRes = await axios.post("http://localhost:5000/payment/create-order", {
+      const keyRes   = await axios.get("https://tenanthub-ka34.onrender.com/payment/getkey");
+      const orderRes = await axios.post("https://tenanthub-ka34.onrender.com/payment/create-order", {
         amount: totalDue, currency: "INR", receipt: "receipt_1",
       });
 
@@ -57,14 +57,14 @@ const PayNow = () => {
         theme: { color: "#6c63ff" },
         handler: async (response) => {
           try {
-            const verifyRes = await axios.post("http://localhost:5000/payment/verify-payment", {
+            const verifyRes = await axios.post("https://tenanthub-ka34.onrender.com/payment/verify-payment", {
               razorpay_order_id:   response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature:  response.razorpay_signature,
             });
             if (verifyRes.data.success) {
               // Mark only the selected bills as paid
-              await axios.post("http://localhost:5000/payment/update-status", {
+              await axios.post("https://tenanthub-ka34.onrender.com/payment/update-status", {
                 rentBillIds: includeRent ? rentBills.map(b => b._id) : [],
                 elecBillIds: includeElec ? elecBills.map(b => b._id) : [],
                 paymentId:   response.razorpay_payment_id,

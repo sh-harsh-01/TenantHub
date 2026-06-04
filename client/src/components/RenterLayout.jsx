@@ -18,7 +18,7 @@ const RenterLayout = ({ children }) => {
       if (!token) return;
 
       try {
-        const res = await axios.get("http://localhost:5000/renter/get-renter-data", {
+        const res = await axios.get("https://tenanthub-ka34.onrender.com/renter/get-renter-data", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUserData(res.data);

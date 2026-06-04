@@ -10,7 +10,7 @@ const PrivateRoute = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/auth/verify", { withCredentials: true })
+      .get("https://tenanthub-ka34.onrender.com/auth/verify", { withCredentials: true })
       .then((res) => {
         setRole(res.data?.user?.role || "renter");
         setStatus("ok");

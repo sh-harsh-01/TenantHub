@@ -36,7 +36,7 @@ export default function AdminDashboard() {
 
   const handleSignOut = async () => {
     try {
-      await axios.post("http://localhost:5000/auth/logout", {}, { withCredentials: true });
+      await axios.post("https://tenanthub-ka34.onrender.com/auth/logout", {}, { withCredentials: true });
     } catch (_) {}
     navigate("/login");
   };
@@ -57,20 +57,20 @@ export default function AdminDashboard() {
   const divider = "rgba(255,255,255,0.08)";
 
   useEffect(() => {
-    axios.get("http://localhost:5000/admin/renters-info", { withCredentials: true })
+    axios.get("https://tenanthub-ka34.onrender.com/admin/renters-info", { withCredentials: true })
       .then((r) => setAllRenters(r.data.renterDetails || []))
       .catch((e) => console.error(e));
-    axios.get("http://localhost:5000/admin/all-bills", { withCredentials: true })
+    axios.get("https://tenanthub-ka34.onrender.com/admin/all-bills", { withCredentials: true })
       .then((r) => setAllBills(r.data.bills || []))
       .catch((e) => console.error(e));
-    axios.get("http://localhost:5000/admin/config", { withCredentials: true })
+    axios.get("https://tenanthub-ka34.onrender.com/admin/config", { withCredentials: true })
       .then((r) => setRentDueDay(r.data.rentDueDay || 1))
       .catch((e) => console.error(e));
   }, []);
 
   const handleViewClick = async (renter) => {
     try {
-      const r = await axios.get("http://localhost:5000/admin/get-renter-bill-by-admin", {
+      const r = await axios.get("https://tenanthub-ka34.onrender.com/admin/get-renter-bill-by-admin", {
         params: { email: renter.email },
         withCredentials: true,
       });
@@ -94,7 +94,7 @@ export default function AdminDashboard() {
   const handleBillSubmit = async () => {
     if (!selectedRenter || !billAmount || !billMonth) return;
     try {
-      await axios.post("http://localhost:5000/admin/add-electricity-bill", {
+      await axios.post("https://tenanthub-ka34.onrender.com/admin/add-electricity-bill", {
         email: selectedRenter.email,
         amountDue: Number(billAmount),
         dueDate: billMonth,
@@ -103,7 +103,7 @@ export default function AdminDashboard() {
       alert("Bill added successfully");
       setBillModal(false); setBillAmount(""); setBillMonth("");
       // Refresh all bills
-      const r = await axios.get("http://localhost:5000/admin/all-bills", { withCredentials: true });
+      const r = await axios.get("https://tenanthub-ka34.onrender.com/admin/all-bills", { withCredentials: true });
       setAllBills(r.data.bills || []);
     } catch (err) { alert("Error adding bill"); }
   };
@@ -456,7 +456,7 @@ export default function AdminDashboard() {
                     onClick={async () => {
                       setPwMsg(null);
                       try {
-                        await axios.post("http://localhost:5000/admin/change-password", { currentPassword: pwCurrent, newPassword: pwNew }, { withCredentials: true });
+                        await axios.post("https://tenanthub-ka34.onrender.com/admin/change-password", { currentPassword: pwCurrent, newPassword: pwNew }, { withCredentials: true });
                         setPwMsg({ ok: true, text: "Password updated successfully!" });
                         setPwCurrent(""); setPwNew("");
                       } catch (e) { setPwMsg({ ok: false, text: e.response?.data?.message || "Error" }); }
@@ -488,7 +488,7 @@ export default function AdminDashboard() {
                     onClick={async () => {
                       setDueDayMsg(null);
                       try {
-                        await axios.post("http://localhost:5000/admin/config", { rentDueDay }, { withCredentials: true });
+                        await axios.post("https://tenanthub-ka34.onrender.com/admin/config", { rentDueDay }, { withCredentials: true });
                         setDueDayMsg({ ok: true, text: `Saved — bills generate on day ${rentDueDay} each month.` });
                       } catch (e) { setDueDayMsg({ ok: false, text: e.response?.data?.message || "Error" }); }
                     }}

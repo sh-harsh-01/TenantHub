@@ -59,7 +59,7 @@ export default function RenterDashboard() {
         // Get email from nav state OR fall back to the JWT cookie via /auth/verify
         let email = state?.email;
         if (!email) {
-          const authRes = await axios.get("http://localhost:5000/auth/verify", {
+          const authRes = await axios.get("https://tenanthub-ka34.onrender.com/auth/verify", {
             withCredentials: true,
           });
           email = authRes.data?.user?.email;
@@ -68,7 +68,7 @@ export default function RenterDashboard() {
         if (!email) throw new Error("No email available");
 
         const [response] = await Promise.all([
-          axios.get("http://localhost:5000/renter/get-renter-data", {
+          axios.get("https://tenanthub-ka34.onrender.com/renter/get-renter-data", {
             params: { email },
             withCredentials: true,
           }),
@@ -105,7 +105,7 @@ export default function RenterDashboard() {
 
   const handleSignOut = async () => {
     try {
-      await axios.post("http://localhost:5000/auth/logout", {}, { withCredentials: true });
+      await axios.post("https://tenanthub-ka34.onrender.com/auth/logout", {}, { withCredentials: true });
     } catch (_) {}
     navigate("/login");
   };

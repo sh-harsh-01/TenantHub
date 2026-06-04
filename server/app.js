@@ -13,7 +13,7 @@ const connectDB = require("./config/db");
 
 // Enable CORS — allow credentials so cookies are sent cross-origin
 app.use(cors({
-  origin: true,
+  origin: "https://tenant-hub-three.vercel.app",
   credentials: true,
 }));
 
